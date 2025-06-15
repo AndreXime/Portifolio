@@ -1,24 +1,20 @@
-'use client';
-
 import { User, Gem, LayoutGrid, Mail } from 'lucide-react';
+
+const buttons = [
+	{ href: '#sobre', Icon: User },
+	{ href: '#projetos', Icon: LayoutGrid },
+	{ href: '#habilidades', Icon: Gem },
+	{ href: '#contato', Icon: Mail },
+];
 
 export default function Navbar() {
 	return (
 		<header className="fixed top-0 left-0 right-0 z-50 w-full header-bg transition-all duration-300">
 			<div className="container mx-auto px-6 py-4 flex justify-between items-center">
-				<a
-					href="#"
-					className="text-2xl font-bold text-white">
-					André Ximenes
-				</a>
+				<span className="text-2xl font-bold text-white">André Ximenes</span>
 				<div className="flex items-center gap-6">
 					<nav className="flex items-center gap-5 sm:gap-6">
-						{[
-							{ href: '#sobre', Icon: User },
-							{ href: '#projetos', Icon: LayoutGrid },
-							{ href: '#habilidades', Icon: Gem },
-							{ href: '#contato', Icon: Mail },
-						].map(({ href, Icon }) => (
+						{buttons.map(({ href, Icon }) => (
 							<a
 								key={href}
 								href={href}

@@ -18,45 +18,56 @@ import { SiJest as JestIcon } from 'react-icons/si';
 import { FaGithub as GithubIcon } from 'react-icons/fa';
 import { SiVercel as VercelIcon } from 'react-icons/si';
 
+import { IconType } from 'react-icons';
+
+const wrapDevicon = (src: string) => {
+	return function WrappedDevicon(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+		return (
+			<img
+				src={src}
+				loading="lazy"
+				{...props}
+			/>
+		);
+	};
+};
+
 interface Skill {
 	name: string;
-	Svg:
-		| string // para `img src`
-		| React.FunctionComponent<React.SVGProps<SVGSVGElement>>; // para componente
+	Svg: React.FC<React.ImgHTMLAttributes<HTMLImageElement>> | IconType;
 }
 
 interface Category {
 	category: string;
 	skills: Skill[];
 }
-
 const Tecnologies: Category[] = [
 	{
 		category: 'Desenvolvimento Web',
 		skills: [
-			{ name: 'React', Svg: ReactIcon },
-			{ name: 'Next.js', Svg: NextjsIcon },
-			{ name: 'TypeScript', Svg: TypescriptIcon },
-			{ name: 'Tailwind CSS', Svg: TailwindIcon },
-			{ name: 'Node.js', Svg: NodejsIcon },
+			{ name: 'React', Svg: wrapDevicon(ReactIcon) },
+			{ name: 'Next.js', Svg: wrapDevicon(NextjsIcon) },
+			{ name: 'TypeScript', Svg: wrapDevicon(TypescriptIcon) },
+			{ name: 'Tailwind CSS', Svg: wrapDevicon(TailwindIcon) },
+			{ name: 'Node.js', Svg: wrapDevicon(NodejsIcon) },
 			{ name: 'Express', Svg: ExpressIcon },
-			{ name: 'PostgreSQL', Svg: PostgresqlIcon },
+			{ name: 'PostgreSQL', Svg: wrapDevicon(PostgresqlIcon) },
 		],
 	},
 	{
 		category: 'DevOps',
 		skills: [
-			{ name: 'Docker', Svg: DockerIcon },
-			{ name: 'CI/CD', Svg: CICDIcon },
-			{ name: 'Git', Svg: GitIcon },
-			{ name: 'Linux', Svg: LinuxIcon },
-			{ name: 'Nginx', Svg: NginxIcon },
+			{ name: 'Docker', Svg: wrapDevicon(DockerIcon) },
+			{ name: 'CI/CD', Svg: wrapDevicon(CICDIcon) },
+			{ name: 'Git', Svg: wrapDevicon(GitIcon) },
+			{ name: 'Linux', Svg: wrapDevicon(LinuxIcon) },
+			{ name: 'Nginx', Svg: wrapDevicon(NginxIcon) },
 		],
 	},
 	{
 		category: 'Ferramentas',
 		skills: [
-			{ name: 'VS Code', Svg: VscodeIcon },
+			{ name: 'VS Code', Svg: wrapDevicon(VscodeIcon) },
 			{ name: 'Jest', Svg: JestIcon },
 			{ name: 'GitHub', Svg: GithubIcon },
 			{ name: 'Vercel', Svg: VercelIcon },
